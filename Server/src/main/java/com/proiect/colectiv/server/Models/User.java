@@ -33,5 +33,14 @@ public class User {
     @Column(name = "password_hash")
     private String password_hash;
 
+    @Length(max=100, message = "Farm name is too long")
+    @NotEmpty(message = "Try again! Farm name cannot be empty")
+    @Column(name = "farm_name")
+    private String farm_name;
+
+    @Length(max=100, message = "Name is too long")
+    @NotEmpty(message = "Try again! Name cannot be empty")
+    @Column(name = "name")
+    private String name;
 
 }
