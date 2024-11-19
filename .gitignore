@@ -36,6 +36,7 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+/*/.idea/
 
 # User-specific stuff
 .idea/**/workspace.xml
