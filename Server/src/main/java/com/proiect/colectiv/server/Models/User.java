@@ -43,4 +43,8 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @Column(name="image_data")
+    private byte[] image_data;
+
+
 }

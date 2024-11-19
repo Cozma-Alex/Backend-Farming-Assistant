@@ -25,4 +25,9 @@ public class ControllerUser {
     public ResponseEntity<User> save(@RequestBody User user) {
         return ResponseEntity.ok(repositoryUser.save(user));
     }
+
+    @PutMapping("/users")
+    public ResponseEntity<User> update(@RequestBody User user){
+        return ResponseEntity.ok(repositoryUser.update(user));
+    }
 }
