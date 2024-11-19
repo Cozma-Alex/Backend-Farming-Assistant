@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class ControllerUser {
 
     @Autowired
@@ -23,5 +24,10 @@ public class ControllerUser {
     @PostMapping("/users")
     public ResponseEntity<User> save(@RequestBody User user) {
         return ResponseEntity.ok(repositoryUser.save(user));
+    }
+
+    @PutMapping("/users")
+    public ResponseEntity<User> update(@RequestBody User user){
+        return ResponseEntity.ok(repositoryUser.update(user));
     }
 }
