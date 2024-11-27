@@ -32,10 +32,9 @@ public class Task {
     @Column(name = "description")
     private String description;
 
-    @NotEmpty(message = "Try again! Task type cannot be empty")
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private TaskRecurrence type;
+    @Column(name = "recurrence")
+    private TaskRecurrence recurrence;
 
     @Column(name = "change_to_medium")
     private LocalDateTime change_to_medium;
@@ -43,19 +42,19 @@ public class Task {
     @Column(name = "change_to_high")
     private LocalDateTime change_to_high;
 
-    @NotEmpty(message = "Try again! Task deadline cannot be empty")
     @Column(name = "deadline")
     private LocalDateTime deadline;
 
-    @NotEmpty(message = "Try again! Task priority cannot be emtpy")
     @Enumerated(EnumType.STRING)
     @Column(name = "priority")
     private TaskPriority priority;
 
-    @NotEmpty(message = "Try again! Task section cannot be empty")
     @Enumerated(EnumType.STRING)
     @Column(name = "section")
     private Section section;
+
+    @Column(name = "done")
+    private boolean done;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

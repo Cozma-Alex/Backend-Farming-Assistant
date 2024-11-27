@@ -2,7 +2,9 @@ package com.proiect.colectiv.server.Persistence;
 
 import com.proiect.colectiv.server.Models.Task;
 import com.proiect.colectiv.server.Models.TaskPriority;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -21,4 +23,20 @@ public interface RepositoryTask extends JpaRepository<Task, UUID> {
 
     @Query("select t from Task t where t.user.id = ?1 and t.id = ?2")
     Optional<Task> getTaskOfUser(UUID user_id, UUID task_id);
+
+    @Transactional
+    @Modifying
+    default Optional<Task> save(UUID user_id, Task entity){
+        System.out.println(entity);
+        if (!entity.getUser().getId().equals(user_id)) {
+            return Optional.empty();
+        }
+        return Optional.of(save(entity));
+    };
+
+    @Transactional
+    @Modifying
+    @Query("delete from Task t where t.id = ?2 and t.user.id = ?1")
+    void deleteById(UUID user_id, UUID task_id);
+
 }
