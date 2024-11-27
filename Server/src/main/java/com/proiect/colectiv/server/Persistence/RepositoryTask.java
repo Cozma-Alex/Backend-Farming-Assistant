@@ -27,7 +27,6 @@ public interface RepositoryTask extends JpaRepository<Task, UUID> {
     @Transactional
     @Modifying
     default Optional<Task> save(UUID user_id, Task entity){
-        System.out.println(entity);
         if (!entity.getUser().getId().equals(user_id)) {
             return Optional.empty();
         }
