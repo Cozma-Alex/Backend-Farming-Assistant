@@ -30,7 +30,7 @@ public class ControllerTask {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/tasks/filters/{priority}")
+    @GetMapping("/tasks/filters/priority/{priority}")
     public ResponseEntity<List<Task>> getTasksByPriority(@PathVariable TaskPriority priority, @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(repositoryTask.getTasksByPriority(UUID.fromString(token), priority));
     }
@@ -58,5 +58,10 @@ public class ControllerTask {
     public ResponseEntity<Void> deleteTask(@PathVariable UUID task_id, @RequestHeader("Authorization") String token){
         repositoryTask.deleteById(UUID.fromString(token), task_id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/tasks/filters/done/{done}")
+    public ResponseEntity<List<Task>> getTasksByDone(@PathVariable boolean done, @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(repositoryTask.getTasksByDone(UUID.fromString(token), done));
     }
 }
