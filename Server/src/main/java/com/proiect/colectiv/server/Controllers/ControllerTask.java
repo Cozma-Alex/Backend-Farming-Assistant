@@ -56,12 +56,13 @@ public class ControllerTask {
 
     @DeleteMapping("/tasks/{task_id}")
     public ResponseEntity<Void> deleteTask(@PathVariable UUID task_id, @RequestHeader("Authorization") String token){
-        repositoryTask.deleteById(UUID.fromString(token), task_id);
-        return ResponseEntity.ok().build();
+        var deletedRows = repositoryTask.deleteById(UUID.fromString(token), task_id);
+
+        return deletedRows == 1 ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 
     @GetMapping("/tasks/filters/done/{done}")
-    public ResponseEntity<List<Task>> getTasksByDone(@PathVariable boolean done, @RequestHeader("Authorization") String token){
-        return ResponseEntity.ok(repositoryTask.getTasksByDone(UUID.fromString(token), done));
+    public ResponseEntity<List<Task>> findTasksByCompletionStatus(@PathVariable boolean done, @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(repositoryTask.findTasksByCompletionStatus(UUID.fromString(token), done));
     }
 }

@@ -36,11 +36,11 @@ public class Task {
     @Column(name = "recurrence")
     private TaskRecurrence recurrence;
 
-    @Column(name = "change_to_medium")
-    private LocalDateTime change_to_medium;
+    @Column(name = "change_to_medium_priority")
+    private LocalDateTime changeToMediumPriority;
 
-    @Column(name = "change_to_high")
-    private LocalDateTime change_to_high;
+    @Column(name = "change_to_high_priority")
+    private LocalDateTime changeToHighPriority;
 
     @Column(name = "deadline")
     private LocalDateTime deadline;

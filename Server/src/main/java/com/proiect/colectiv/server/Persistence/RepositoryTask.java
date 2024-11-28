@@ -36,9 +36,9 @@ public interface RepositoryTask extends JpaRepository<Task, UUID> {
     @Transactional
     @Modifying
     @Query("delete from Task t where t.id = ?2 and t.user.id = ?1")
-    void deleteById(UUID user_id, UUID task_id);
+    int deleteById(UUID user_id, UUID task_id);
 
     @Query("select t from Task t where t.user.id = ?1 and t.done = ?2")
-    List<Task> getTasksByDone(UUID user_id, boolean done);
+    List<Task> findTasksByCompletionStatus(UUID user_id, boolean done);
 
 }
