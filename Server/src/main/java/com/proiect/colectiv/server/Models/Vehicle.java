@@ -49,7 +49,7 @@ public class Vehicle {
     private double kilometers;
 
     @Column(name = "acquisition_date")
-    private LocalDate acquisition_date;
+    private LocalDate acquisitionDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

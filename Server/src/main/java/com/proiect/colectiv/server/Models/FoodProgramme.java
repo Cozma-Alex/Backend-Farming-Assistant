@@ -23,10 +23,10 @@ public class FoodProgramme {
 
     @NotEmpty(message = "Start hour can't be empty")
     @Column(name = "start_hour")
-    private LocalTime start_hour;
+    private LocalTime startHour;
 
     @Column(name = "end_hour")
-    private LocalTime end_hour;
+    private LocalTime endHour;
 
     @ManyToOne
     @JoinColumn(name = "animal_id")

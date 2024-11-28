@@ -3,7 +3,6 @@ package com.proiect.colectiv.server.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,12 +30,12 @@ public class User {
     @Length(max = 255, message = "Password is too long")
     @NotEmpty(message = "Try again! Password cannot be empty")
     @Column(name = "password_hash")
-    private String password_hash;
+    private String passwordHash;
 
     @Length(max=100, message = "Farm name is too long")
     @NotEmpty(message = "Try again! Farm name cannot be empty")
     @Column(name = "farm_name")
-    private String farm_name;
+    private String farmName;
 
     @Length(max=100, message = "Name is too long")
     @NotEmpty(message = "Try again! Name cannot be empty")
@@ -44,7 +43,7 @@ public class User {
     private String name;
 
     @Column(name="image_data")
-    private byte[] image_data;
+    private byte[] imageData;
 
 
 }

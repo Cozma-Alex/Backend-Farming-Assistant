@@ -35,11 +35,11 @@ public class Animal {
     private LocalDate age;
 
     @Column(name="image_data")
-    private byte[] image_data;
+    private byte[] imageData;
 
     @Length(max = 255, message = "Health profile is too long")
     @Column(name = "health_profile")
-    private String health_profile;
+    private String healthProfile;
 
 
     @ManyToOne

@@ -16,7 +16,8 @@ public class ControllerUser {
 
     @PostMapping("/users/auth")
     public ResponseEntity<User> login(@RequestBody User user) {
-        return repositoryUser.findByEmailAndPassword(user.getEmail(), user.getPassword_hash())
+        System.out.println(user);
+        return repositoryUser.findByEmailAndPassword(user.getEmail(), user.getPasswordHash())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
