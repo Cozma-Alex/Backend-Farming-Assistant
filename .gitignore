@@ -11,6 +11,7 @@ run/
 
 ### Gradle ###
 .gradle
+gradle/
 **/build/
 !src/**/build/
 
