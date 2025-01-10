@@ -1,6 +1,7 @@
 package com.proiect.colectiv.server.Controllers;
 
 import com.proiect.colectiv.server.Models.Animal;
+import com.proiect.colectiv.server.Models.DTOs.AnimalsDTO;
 import com.proiect.colectiv.server.Models.FoodProgramme;
 import com.proiect.colectiv.server.Persistence.RepositoryAnimal;
 import com.proiect.colectiv.server.Persistence.RepositoryFoodProgramme;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -57,8 +59,15 @@ public class ControllerAnimal {
     }
 
     @GetMapping("/animals/location/{location_id}")
-    public ResponseEntity<List<Animal>> getAnimalsByLocation(@PathVariable UUID location_id, @RequestHeader("Authorization") String token){
-        return ResponseEntity.ok(repositoryAnimal.getAnimalsByLocation(UUID.fromString(token), location_id).orElse(null));
+    public ResponseEntity<List<AnimalsDTO>> getAnimalsByLocation(@PathVariable UUID location_id, @RequestHeader("Authorization") String token){
+        List<AnimalsDTO> animalsDTOS = new ArrayList<>();
+        var animals =  repositoryAnimal.getAnimalsByLocation(UUID.fromString(token), location_id);
+        for(var animal : animals){
+            var foodProgrammes = repositoryFoodProgramme.getFoodProgrammesOfAnimal(UUID.fromString(token), animal.getId());
+            animalsDTOS.add(new AnimalsDTO(animal, foodProgrammes));
+        }
+
+        return ResponseEntity.ok(animalsDTOS);
     }
 
 

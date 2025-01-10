@@ -44,6 +44,6 @@ public interface RepositoryAnimal extends JpaRepository<Animal, UUID> {
     Optional<Animal> findById(UUID user_id, UUID id);
 
     @Query("select a from Animal a where a.location.user.id = ?1 and a.location.id = ?2")
-    Optional<List<Animal>> getAnimalsByLocation(UUID user_id, UUID location_id);
+    List<Animal> getAnimalsByLocation(UUID user_id, UUID location_id);
 
 }
