@@ -21,7 +21,6 @@ public class FoodProgramme {
     @Column(name = "id")
     private UUID id;
 
-    @NotEmpty(message = "Start hour can't be empty")
     @Column(name = "start_hour")
     private LocalTime startHour;
 
