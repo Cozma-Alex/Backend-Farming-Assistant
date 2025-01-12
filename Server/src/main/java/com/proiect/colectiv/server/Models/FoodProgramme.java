@@ -9,6 +9,15 @@ import lombok.NoArgsConstructor;
 import java.time.LocalTime;
 import java.util.UUID;
 
+/**
+ * FoodProgramme entity
+ * Represents the food programme of an animal having the following fields:
+ * - id: UUID - the id of the food programme (primary key)
+ * - startHour: LocalTime - the start hour of the food programme (not null)
+ * - endHour: LocalTime - the end hour of the food programme (optional)
+ * - animal: Animal - the animal that has the food programme (foreign key, not null)
+ * - food: Food - the food that is in the food programme (foreign key, not null)
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

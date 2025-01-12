@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
+/**
+ * Data Transfer Object for Location
+ * Contains a Location and a list of Coordinates
+ * Used to transfer data between the server and the client
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

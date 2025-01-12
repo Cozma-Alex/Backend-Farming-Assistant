@@ -10,6 +10,20 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 import java.util.UUID;
 
+/**
+ * Vehicle model
+ * Represents a vehicle in the database with the following fields:
+ * - id: UUID - the unique identifier of the vehicle (primary key)
+ * - name: String - the name of the vehicle (not null, max 150 characters)
+ * - description: String - the description of the vehicle (max 255 characters)
+ * - model: String - the model of the vehicle (max 100 characters)
+ * - brand: String - the brand of the vehicle (max 100 characters)
+ * - year: int - the year of the vehicle
+ * - price: double - the price of the vehicle
+ * - kilometers: double - the number of kilometers of the vehicle
+ * - acquisitionDate: LocalDate - the date when the vehicle was acquired
+ * - user: User - the user that owns the vehicle
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

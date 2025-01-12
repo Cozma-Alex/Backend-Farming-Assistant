@@ -17,6 +17,12 @@ public class ControllerFood {
     @Autowired
     private RepositoryFood repositoryFood;
 
+    /**
+     * Save a food
+     * @param food the food to be saved
+     * @param token the token of the user - "Authorization" header with the used UUID as key
+     * @return the saved food or 401 if the user is not the owner of the location
+     */
     @PostMapping("/foods")
     public ResponseEntity<Food> saveFood(@RequestBody Food food, @RequestHeader("Authorization") String token) {
         return repositoryFood.save(UUID.fromString(token), food)
@@ -24,6 +30,11 @@ public class ControllerFood {
                 .orElse(ResponseEntity.status(401).build());
     }
 
+    /**
+     * Get all foods of a user
+     * @param token the token of the user
+     * @return the foods of the user
+     */
     @GetMapping("/foods")
     public ResponseEntity<List<Food>> getFoodsOfUser(@RequestHeader("Authorization") String token){
         return ResponseEntity.ok(repositoryFood.getFoodsOfUser(UUID.fromString(token)));

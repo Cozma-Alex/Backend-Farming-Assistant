@@ -14,6 +14,12 @@ import java.util.UUID;
 @Repository
 public interface RepositoryFood extends JpaRepository<Food, UUID> {
 
+    /**
+     * Save a food entity
+     * @param user_id the id of the user
+     * @param entity the entity to be saved
+     * @return the saved entity or empty if the user is not the owner
+     */
     @Transactional
     @Modifying
     default Optional<Food> save(UUID user_id, Food entity){
@@ -23,6 +29,11 @@ public interface RepositoryFood extends JpaRepository<Food, UUID> {
         return Optional.of(save(entity));
     };
 
+    /**
+     * Get all the foods of a user
+     * @param user_id the id of the user
+     * @return a list of foods
+     */
     @Query("select f from Food f where f.user.id = ?1")
     List<Food> getFoodsOfUser(UUID user_id);
 }

@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object for Animals
+ * Contains an Animal and a list of FoodProgrammes
+ * Used to transfer data between the server and the client
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
