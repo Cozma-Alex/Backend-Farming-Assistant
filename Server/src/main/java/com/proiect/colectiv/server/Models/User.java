@@ -10,6 +10,16 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.UUID;
 
+/**
+ * User model
+ * This class is used to create a user object with the following attributes:
+ * - id: UUID - the id of the user (primary key)
+ * - email: String - the email of the user
+ * - passwordHash: String - the password hash of the user's password
+ * - farmName: String - the name of the farm
+ * - name: String - the name of the user
+ * - imageData: byte[] - the image data of the user
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,17 +42,17 @@ public class User {
     @Column(name = "password_hash")
     private String passwordHash;
 
-    @Length(max=100, message = "Farm name is too long")
+    @Length(max = 100, message = "Farm name is too long")
     @NotEmpty(message = "Try again! Farm name cannot be empty")
     @Column(name = "farm_name")
     private String farmName;
 
-    @Length(max=100, message = "Name is too long")
+    @Length(max = 100, message = "Name is too long")
     @NotEmpty(message = "Try again! Name cannot be empty")
     @Column(name = "name")
     private String name;
 
-    @Column(name="image_data")
+    @Column(name = "image_data")
     private byte[] imageData;
 
 

@@ -10,6 +10,18 @@ import org.hibernate.validator.constraints.Length;
 import java.time.LocalDate;
 import java.util.UUID;
 
+
+/**
+ * Animal model
+ * Represents an animal in the database with the following fields:
+ * - id: UUID - unique identifier of the animal (primary key)
+ * - name: String - name of the animal (e.g. Rex)
+ * - description: String - description of the animal (e.g. breed, color)
+ * - age: LocalDate - date of birth of the animal (if known)
+ * - imageData: byte[] - image of the animal in byte format
+ * - healthProfile: String - health profile of the animal (e.g. vaccinated, neutered)
+ * - location: Location - location of the animal (foreign key)
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +34,7 @@ public class Animal {
     @Column(name = "id")
     private UUID id;
 
-    @Length(max = 100, message="Animal name is too long")
+    @Length(max = 100, message = "Animal name is too long")
     @NotEmpty(message = "Try again! Animal name cannot be empty")
     @Column(name = "name")
     private String name;
@@ -34,16 +46,14 @@ public class Animal {
     @Column(name = "age")
     private LocalDate age;
 
-    @Column(name="image_data")
+    @Column(name = "image_data")
     private byte[] imageData;
 
     @Length(max = 255, message = "Health profile is too long")
     @Column(name = "health_profile")
     private String healthProfile;
 
-
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
-
 }

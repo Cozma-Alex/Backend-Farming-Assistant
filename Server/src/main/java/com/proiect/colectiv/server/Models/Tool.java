@@ -9,6 +9,15 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.UUID;
 
+/**
+ * Tool model
+ * Contains all data about a tool with the following attributes:
+ * - id: UUID - the id of the tool (primary key)
+ * - name: String - the name of the tool
+ * - description: String - the description of the tool
+ * - quantity: double - the quantity of the tool
+ * - user: User - the user that owns the tool
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

@@ -15,6 +15,12 @@ import java.util.UUID;
 @Repository
 public interface RepositoryFoodProgramme extends JpaRepository<FoodProgramme, UUID> {
 
+    /**
+     * Save a food programme entity
+     * @param user_id the id of the user
+     * @param entities the entities to be saved
+     * @return the saved entities or empty if the user is not the owner
+     */
     @Transactional
     @Modifying
     default Optional<List<FoodProgramme>> saveAll(UUID user_id, List<FoodProgramme> entities){
@@ -24,7 +30,12 @@ public interface RepositoryFoodProgramme extends JpaRepository<FoodProgramme, UU
         return Optional.of(saveAll(entities));
     };
 
-
+    /**
+     * Get all the food programmes of an animal
+     * @param user_id the id of the user
+     * @param animal_id the id of the animal
+     * @return a list of food programmes
+     */
     @Query("SELECT f FROM FoodProgramme f WHERE f.animal.id = :animal_id AND f.animal.location.user.id = :user_id")
     List<FoodProgramme> getFoodProgrammesOfAnimal(UUID user_id, UUID animal_id);
 }

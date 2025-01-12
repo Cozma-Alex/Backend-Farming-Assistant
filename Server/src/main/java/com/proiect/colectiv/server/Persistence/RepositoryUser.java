@@ -14,6 +14,12 @@ import java.util.UUID;
 @Repository
 public interface RepositoryUser extends JpaRepository<User, UUID> {
 
+    /**
+     * Find a user by email and password
+     * @param email the email of the user
+     * @param password the password of the user
+     * @return the user if found
+     */
     @Query(
             nativeQuery = true,
             value = """
@@ -23,6 +29,11 @@ public interface RepositoryUser extends JpaRepository<User, UUID> {
                     """)
     Optional<User> findByEmailAndPassword(String email, String password);
 
+    /**
+     * Save a user
+     * @param user the user to save
+     * @return the saved user
+     */
     @Override
     @Transactional
     @Query(nativeQuery = true, value = """
@@ -32,6 +43,11 @@ public interface RepositoryUser extends JpaRepository<User, UUID> {
             """)
     User save(User user);
 
+    /**
+     * Update a user
+     * @param user the user to update
+     * @return the updated user
+     */
     @Transactional
     @Query(nativeQuery = true, value = """
                 update users set email = :#{#user.email}, password_hash = crypt(:#{#user.passwordHash}, gen_salt('bf')), farm_name = :#{#user.farmName}, name = :#{#user.name}

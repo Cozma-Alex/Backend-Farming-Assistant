@@ -1,5 +1,8 @@
 package com.proiect.colectiv.server.Models;
 
+import com.proiect.colectiv.server.Models.Enums.Section;
+import com.proiect.colectiv.server.Models.Enums.TaskPriority;
+import com.proiect.colectiv.server.Models.Enums.TaskRecurrence;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -7,10 +10,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Task model
+ * Contains all the information about a task with the following fields:
+ * - id: UUID - the unique identifier of the task (primary key)
+ * - name: String - the name of the task (max 150 characters)
+ * - description: String - the description of the task (max 255 characters)
+ * - recurrence: TaskRecurrence - the recurrence of the task (daily, weekly, monthly, yearly)
+ * - changeToMediumPriority: LocalDateTime - the date when the task should change to medium priority
+ * - changeToHighPriority: LocalDateTime - the date when the task should change to high priority
+ * - deadline: LocalDateTime - the deadline of the task
+ * - priority: TaskPriority - the priority of the task (low, medium, high)
+ * - section: Section - the section of the task
+ * - done: boolean - the status of the task (done or not done)
+ * - user: User - the user that the task belongs to
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
