@@ -6,10 +6,12 @@ import com.proiect.colectiv.server.Models.DTOs.LocationDTO;
 import com.proiect.colectiv.server.Models.Location;
 import com.proiect.colectiv.server.Models.LocationType;
 import com.proiect.colectiv.server.Persistence.RepositoryCoordinate;
+
 import com.proiect.colectiv.server.Persistence.RepositoryLocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,5 +84,6 @@ public class ControllerLocation {
         }
 
         return ResponseEntity.ok(locationsDTO);
+
     }
 }

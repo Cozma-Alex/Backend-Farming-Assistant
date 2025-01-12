@@ -15,6 +15,7 @@ import java.util.UUID;
 @Repository
 public interface RepositoryLocation extends JpaRepository<Location, UUID> {
 
+
     @Transactional
     @Modifying
     default Optional<Location> save(UUID user_id, Location entity){
@@ -32,4 +33,5 @@ public interface RepositoryLocation extends JpaRepository<Location, UUID> {
 
     @Query("select l from Location l where l.user.id = ?1 and l.type = ?2")
     List<Location> getLocationsOfUserByType(UUID user_id, LocationType type);
+
 }

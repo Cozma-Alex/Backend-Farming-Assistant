@@ -23,6 +23,9 @@ public class Location {
     @Column(name = "type")
     private LocationType type;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
