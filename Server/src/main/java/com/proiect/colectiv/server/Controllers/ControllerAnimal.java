@@ -118,6 +118,11 @@ public class ControllerAnimal {
      */
     @PostMapping("/animals/food-programmes")
     public ResponseEntity<List<FoodProgramme>> saveFoodProgrammes(@RequestBody List<FoodProgramme> foodProgrammes, @RequestHeader("Authorization") String token){
+        if(foodProgrammes.isEmpty()){
+            return ResponseEntity.badRequest().build();
+        }
+        repositoryFoodProgramme.deleteAllByAnimal(UUID.fromString(token), foodProgrammes.get(0).getAnimal());
+
         return repositoryFoodProgramme.saveAll(UUID.fromString(token), foodProgrammes)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(401).build());
