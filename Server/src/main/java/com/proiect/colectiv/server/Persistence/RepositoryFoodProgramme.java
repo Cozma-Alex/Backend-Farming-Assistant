@@ -1,5 +1,6 @@
 package com.proiect.colectiv.server.Persistence;
 
+import com.proiect.colectiv.server.Models.Animal;
 import com.proiect.colectiv.server.Models.FoodProgramme;
 import com.proiect.colectiv.server.Models.Task;
 import jakarta.transaction.Transactional;
@@ -38,4 +39,9 @@ public interface RepositoryFoodProgramme extends JpaRepository<FoodProgramme, UU
      */
     @Query("SELECT f FROM FoodProgramme f WHERE f.animal.id = :animal_id AND f.animal.location.user.id = :user_id")
     List<FoodProgramme> getFoodProgrammesOfAnimal(UUID user_id, UUID animal_id);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM FoodProgramme f WHERE f.animal.id = :#{#animal.id} AND f.animal.location.user.id = :user_id")
+    void deleteAllByAnimal(UUID user_id, Animal animal);
 }
