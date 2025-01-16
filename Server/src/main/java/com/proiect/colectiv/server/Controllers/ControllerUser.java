@@ -1,10 +1,14 @@
 package com.proiect.colectiv.server.Controllers;
 
+import com.proiect.colectiv.server.Models.Food;
 import com.proiect.colectiv.server.Models.User;
+import com.proiect.colectiv.server.Persistence.RepositoryFood;
 import com.proiect.colectiv.server.Persistence.RepositoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -13,6 +17,9 @@ public class ControllerUser {
 
     @Autowired
     private RepositoryUser repositoryUser;
+
+    @Autowired
+    private RepositoryFood repositoryFood;
 
     /**
      * Method for login
@@ -34,7 +41,9 @@ public class ControllerUser {
      */
     @PostMapping("/users")
     public ResponseEntity<User> save(@RequestBody User user) {
-        return ResponseEntity.ok(repositoryUser.save(user));
+        repositoryUser.save(user);
+        repositoryFood.save(user.getId(),new Food(UUID.randomUUID(), "Porumb", "Porumb de mancat", 10000, user));
+        return ResponseEntity.ok(user);
     }
 
     /**
