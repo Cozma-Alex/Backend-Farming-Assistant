@@ -40,7 +40,6 @@ public class Food {
     @Column(name = "description")
     private String description;
 
-    @NotEmpty(message = "Try again! Food quantity cannot be empty")
     @Column(name = "quantity")
     private double quantity;
 
