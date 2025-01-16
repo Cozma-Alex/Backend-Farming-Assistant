@@ -41,9 +41,9 @@ public class ControllerUser {
      */
     @PostMapping("/users")
     public ResponseEntity<User> save(@RequestBody User user) {
-        repositoryUser.save(user);
-        repositoryFood.save(user.getId(),new Food(UUID.randomUUID(), "Porumb", "Porumb de mancat", 10000, user));
-        return ResponseEntity.ok(user);
+        var newUser = repositoryUser.save(user);
+        repositoryFood.save(newUser.getId(),new Food(UUID.randomUUID(), "Porumb", "Porumb de mancat", 10.0, newUser));
+        return ResponseEntity.ok(newUser);
     }
 
     /**
