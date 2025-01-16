@@ -46,7 +46,6 @@ public class Food {
     private String description;
 
     @Schema(description = "Quantity of the food item")
-    @NotEmpty(message = "Try again! Food quantity cannot be empty")
     @Column(name = "quantity")
     private double quantity;
 

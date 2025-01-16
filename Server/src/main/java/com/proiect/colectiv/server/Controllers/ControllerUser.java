@@ -1,6 +1,8 @@
 package com.proiect.colectiv.server.Controllers;
 
+import com.proiect.colectiv.server.Models.Food;
 import com.proiect.colectiv.server.Models.User;
+import com.proiect.colectiv.server.Persistence.RepositoryFood;
 import com.proiect.colectiv.server.Persistence.RepositoryUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
@@ -21,7 +25,9 @@ public class ControllerUser {
 
     @Autowired
     private RepositoryUser repositoryUser;
-
+  
+    @Autowired
+    private RepositoryFood repositoryFood;
 
     @Operation(
             summary = "Authenticate user",
@@ -66,7 +72,9 @@ public class ControllerUser {
     })
     @PostMapping("/users")
     public ResponseEntity<User> save(@RequestBody User user) {
-        return ResponseEntity.ok(repositoryUser.save(user));
+        var newUser = repositoryUser.save(user);
+        repositoryFood.save(newUser.getId(),new Food(UUID.randomUUID(), "Porumb", "Porumb de mancat", 10.0, newUser));
+        return ResponseEntity.ok(newUser);
     }
 
 
